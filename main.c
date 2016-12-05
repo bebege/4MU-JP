@@ -61,13 +61,13 @@
 /*int 4 bytes , short 2 bytes (+/-32767) , char=bool 1 byte, 
 
 unsigned short int x = 0x9527;
-// ï¿½Qï¿½Î¥kï¿½ï¿½ 8 bits ï¿½ï¿½ï¿½ï¿½ low byte:
+// §Q¥Î¥k²¾ 8 bits À½±¼ low byte:
 unsigned short int hb = x >> 8;  (high byte of 9527 = 95)
 //TXD_Buf[3]=data>>8;		//high byte (choose high byte)
-// ï¿½Qï¿½Î¾Bï¿½nï¿½Lï¿½oï¿½ï¿½ high byte ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½:
+// §Q¥Î¾B¸n¹LÂo±¼ high byte ªº³¡¤À:
 unsigned short int lb = x & 0x00ff; (low byte of 9527 = 27)
 // TXD_Buf[2]=data%256;	//low byte (choose low byte)
-//unsigned char(1 byte)  a = 205;       // ï¿½Y 1100 1101, ï¿½Û·ï¿½ï¿½ a = 0xcd
+//unsigned char(1 byte)  a = 205;       // §Y 1100 1101, ¬Û·í©ó a = 0xcd
 
 
 */
@@ -336,14 +336,14 @@ void Find_max_min_Value(char BMUID)
 			Block_maxVolts_Data[BMUID][0]=Block_Volts_Data[BMUID][6];
 			Block_minVolts_Data[BMUID][0]=Block_Volts_Data[BMUID][6];	
 			char i=0;
-								    for( i = 0; i < 8; i++){  //ï¿½ï¿½Xï¿½Ì¤jï¿½ï¿½ , 8 cells
+								    for( i = 0; i < 8; i++){  //§ä¥X³Ì¤j­È , 8 cells
 							
 								            if(Block_maxVolts_Data[BMUID][0] < Block_Volts_Data[BMUID][i]){
 												if(Block_maxVolts_Data[BMUID][0]<6000)
 								                      Block_maxVolts_Data[BMUID][0]= Block_Volts_Data[BMUID][i];
 								            }    
 								
-										//ï¿½ï¿½Xï¿½Ì¤pï¿½ï¿½ , 8 cells
+										//§ä¥X³Ì¤p­È , 8 cells
 					  					if(Block_minVolts_Data[BMUID][0]  >Block_Volts_Data[BMUID][i] ){
 											if( Block_Volts_Data[BMUID][i] >2000)
 								                      Block_minVolts_Data[BMUID][0]  = Block_Volts_Data[BMUID][i];
@@ -353,7 +353,7 @@ void Find_max_min_Value(char BMUID)
 									
 				Block_maxTemp_Data[BMUID][0]=Block_Temp_Data[BMUID][0];  //
 			   for( i = 1; i < 4; i++)
-			   	{  //ï¿½ï¿½Xï¿½Ì¤jï¿½ï¿½ , 8 cells
+			   	{  //§ä¥X³Ì¤j­È , 8 cells
 			            if(   Block_maxTemp_Data[BMUID][0] < Block_Temp_Data[BMUID][i]    ){
 			                      Block_maxTemp_Data[BMUID][0]= Block_Temp_Data[BMUID][i];
 			            }       
@@ -366,12 +366,12 @@ void Find_max_min_Value(char BMUID)
 			  Pack_minVolt=Block_Volts_Data[0][0];
 				char  i=0;
 			   for( i = 1; i < BMU_NUMBERS; i++)
-			   	{  //ï¿½ï¿½Xï¿½Ì¤jï¿½ï¿½ 			   					   	
+			   	{  //§ä¥X³Ì¤j­È 			   					   	
 			            if(   Block_Volts_Data[i][0] >Pack_maxVolt  ) {
 						if( Block_Volts_Data[i][0] < 8000)
 					 Pack_maxVolt=Block_Volts_Data[i][0];			                 
 			            	}
-				  	  //ï¿½ï¿½Xï¿½Ì¤pï¿½ï¿½ 
+				  	  //§ä¥X³Ì¤p­È 
 			            if(  Block_Volts_Data[i][0] <Pack_minVolt     )  //fetch voltagesBlock_minVolts_Data[i][0] )
 			            	{  if(Pack_minVolt>1000)
 			                 Pack_minVolt  = Block_Volts_Data[i][0];
@@ -380,12 +380,12 @@ void Find_max_min_Value(char BMUID)
 			    	
 //==================temperature==========================
 			i=0;
-			   for( i = 0; i < BMU_NUMBERS; i++){  //ï¿½ï¿½Xï¿½Ì¤jï¿½ï¿½ 
+			   for( i = 0; i < BMU_NUMBERS; i++){  //§ä¥X³Ì¤j­È 
 			            if(Block_maxTemp_Data[i][0] >= Pack_maxTemp){
 			                      Pack_maxTemp=Block_maxTemp_Data[i][0];
 			            }       
 			   
-				  	  //ï¿½ï¿½Xï¿½Ì¤pï¿½ï¿½ 
+				  	  //§ä¥X³Ì¤p­È 
 			            if( Block_minTemp_Data[i][0]  <=Pack_minTemp   )  //fetch voltagesBlock_minVolts_Data[i][0] )
 			            {
 			            
@@ -465,18 +465,18 @@ void SafetyAlarm(char BMUID)   //0x51
   
    	Safety=0x0000;
 	Safety=IIC_ReadWord(BlockAddress(BMUID),0x51);   
-	unsigned short mask = 0x0001; // ï¿½ï¿½lï¿½Bï¿½nï¿½Oï¿½Ó³Ì°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 1 ï¿½ï¿½byte
+	unsigned short mask = 0x0001; // ªì©l¾B¸n¬O­Ó³Ì°ª¬°¤¸¬° 1 ªºbyte
 	char i=0;
 	
 	  for ( i=0; i<16; ++i)    
     {		Alarm[BMUID][i]=0;  //init
     
-        if ((Safety& mask) != 0)   // ï¿½pï¿½G b ï¿½M mask ï¿½ï¿½ AND ï¿½ï¿½ï¿½ï¿½ï¿½Gï¿½ï¿½ï¿½ï¿½0
-        {   Alarm[BMUID][i]=1;  }    // ï¿½Yï¿½Nï¿½ï¿½ b ï¿½ï¿½ï¿½ï¿½ bit ï¿½ï¿½ 1
-        else                   // ï¿½Ò¥Hï¿½ï¿½Ü¤@ï¿½ï¿½ 1
-        {   Alarm[BMUID][i]=0; }    // ï¿½_ï¿½hï¿½ï¿½Ü¤@ï¿½ï¿½ 0
-                               // ï¿½Cï¿½ï¿½ï¿½jï¿½é¤¤ï¿½ï¿½ï¿½ï¿½ mask ï¿½kï¿½ï¿½ï¿½@ï¿½ï¿½ bit
-        mask <<= 1;            // ï¿½Nï¿½ï¿½ï¿½Fï¿½Uï¿½ï¿½ bit ï¿½ï¿½ï¿½Bï¿½n
+        if ((Safety& mask) != 0)   // ¦pªG b ©M mask °µ AND ªºµ²ªG¤£¬°0
+        {   Alarm[BMUID][i]=1;  }    // §Y¥Nªí b ªº¸Ó bit ¬° 1
+        else                   // ©Ò¥HÅã¥Ü¤@­Ó 1
+        {   Alarm[BMUID][i]=0; }    // §_«hÅã¥Ü¤@­Ó 0
+                               // ¨C¦¸°j°é¤¤³£§â mask ¥k²¾¤@­Ó bit
+        mask <<= 1;            // ´N¦¨¤F¤U­Ó bit ªº¾B¸n
     }
 	
 		
@@ -984,7 +984,7 @@ I2C_switch(1);
 			Pack_maxTemp=Module_Temp[0];  // init	
 			for(BMUID=0;BMUID<BMU_NUMBERS;BMUID++)  //BMUID
 			 {													
-							   	 //ï¿½ï¿½Xï¿½Ì¤jï¿½ï¿½ 
+							   	 //§ä¥X³Ì¤j­È 
 					  if(   Pack_maxTemp < Module_Temp[BMUID]    ){
 							                      Pack_maxTemp= Module_Temp[BMUID];
 							 }    
